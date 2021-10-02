@@ -16,6 +16,7 @@
 		3D472F042706FEB100B8D583 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472F032706FEB100B8D583 /* AlbumView.swift */; };
 		3D472F062707039900B8D583 /* CustomCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472F052707039900B8D583 /* CustomCircleView.swift */; };
 		3D472F0927076C5A00B8D583 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */; };
+		3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */; };
 		3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFDE802708448D001B8C10 /* UserProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		3D472F032706FEB100B8D583 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		3D472F052707039900B8D583 /* CustomCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleView.swift; sourceTree = "<group>"; };
 		3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
+		3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		3DAFDE802708448D001B8C10 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 				3D472F052707039900B8D583 /* CustomCircleView.swift */,
 				3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */,
 				3DAFDE802708448D001B8C10 /* UserProfileView.swift */,
+				3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				3D472F0927076C5A00B8D583 /* AlbumDetailView.swift in Sources */,
 				3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */,
+				3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */,
 				3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */,
 				3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */,
 				3D472F042706FEB100B8D583 /* AlbumView.swift in Sources */,
