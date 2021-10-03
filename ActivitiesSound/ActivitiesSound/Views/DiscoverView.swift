@@ -64,9 +64,9 @@ struct DiscoverView: View {
                 ScrollView{
                     VStack{
                         HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
                          
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Cooking")
                      
                             
                         }
@@ -74,9 +74,9 @@ struct DiscoverView: View {
                     .padding()
                     VStack{
                         HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Funmood")
                          
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sleeping")
                             
                             
                         }
@@ -84,17 +84,17 @@ struct DiscoverView: View {
                     .padding()
                     VStack{
                         HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Studying")
+                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Housework")
                             
                         }
                     }
                     .padding()
                     VStack{
                         HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Workout")
                       
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental")
+                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
 
                         }
                     }

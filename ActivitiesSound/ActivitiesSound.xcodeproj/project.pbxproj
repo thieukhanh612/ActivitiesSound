@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D06716E270A1B1600016CC9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06716D270A1B1600016CC9 /* Helper.swift */; };
+		3D067170270A1D5D00016CC9 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06716F270A1D5D00016CC9 /* SignInView.swift */; };
+		3D067172270A396500016CC9 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D067171270A396500016CC9 /* SignUpView.swift */; };
 		3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472ECC2706F01E00B8D583 /* ActivitiesSoundApp.swift */; };
 		3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472ECE2706F01E00B8D583 /* DiscoverView.swift */; };
 		3D472ED12706F02000B8D583 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D472ED02706F02000B8D583 /* Assets.xcassets */; };
@@ -18,6 +21,7 @@
 		3D472F0927076C5A00B8D583 /* AlbumDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */; };
 		3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */; };
 		3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFDE802708448D001B8C10 /* UserProfileView.swift */; };
+		3DC290A32709973200403390 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC290A22709973200403390 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D06716D270A1B1600016CC9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		3D06716F270A1D5D00016CC9 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		3D067171270A396500016CC9 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		3D472EC92706F01E00B8D583 /* ActivitiesSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivitiesSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D472ECC2706F01E00B8D583 /* ActivitiesSoundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesSoundApp.swift; sourceTree = "<group>"; };
 		3D472ECE2706F01E00B8D583 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -55,6 +62,7 @@
 		3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailView.swift; sourceTree = "<group>"; };
 		3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		3DAFDE802708448D001B8C10 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		3DC290A22709973200403390 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,7 @@
 				3D472ED52706F02000B8D583 /* Info.plist */,
 				3D472ED22706F02000B8D583 /* Preview Content */,
 				3D472F0727076B6000B8D583 /* Views */,
+				3D06716D270A1B1600016CC9 /* Helper.swift */,
 			);
 			path = ActivitiesSound;
 			sourceTree = "<group>";
@@ -149,6 +158,9 @@
 				3D472F0827076C5A00B8D583 /* AlbumDetailView.swift */,
 				3DAFDE802708448D001B8C10 /* UserProfileView.swift */,
 				3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */,
+				3DC290A22709973200403390 /* LoginView.swift */,
+				3D06716F270A1D5D00016CC9 /* SignInView.swift */,
+				3D067171270A396500016CC9 /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,8 +298,12 @@
 				3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */,
 				3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */,
 				3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */,
+				3D067170270A1D5D00016CC9 /* SignInView.swift in Sources */,
+				3D067172270A396500016CC9 /* SignUpView.swift in Sources */,
 				3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */,
+				3D06716E270A1B1600016CC9 /* Helper.swift in Sources */,
 				3D472F042706FEB100B8D583 /* AlbumView.swift in Sources */,
+				3DC290A32709973200403390 /* LoginView.swift in Sources */,
 				3D472F062707039900B8D583 /* CustomCircleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

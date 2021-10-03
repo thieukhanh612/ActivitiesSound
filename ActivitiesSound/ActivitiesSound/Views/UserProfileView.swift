@@ -49,11 +49,11 @@ struct UserProfileView: View {
                             .fontWeight(.bold)
                         ScrollView(.horizontal){
                             HStack(spacing: 15) {
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
                                     .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Studying")
                                     .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sleeping")
                                     .frame(maxWidth: geometry.size.width / 3)
                                 
                             }
@@ -74,11 +74,11 @@ struct UserProfileView: View {
                             .fontWeight(.bold)
                         ScrollView(.horizontal){
                             HStack(spacing: 15) {
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
                                     .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Cooking")
                                     .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental")
+                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Housework")
                                     .frame(maxWidth: geometry.size.width / 3)
                                 
                             }

@@ -160,11 +160,11 @@ struct AlbumDetailView: View {
                                 .font(.headline)
                             ScrollView(.horizontal){
                                 HStack(spacing: 15) {
-                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental")
+                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
                                         .frame(maxWidth: geometry.size.width / 2)
-                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental")
+                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Workout")
                                         .frame(maxWidth: geometry.size.width / 2)
-                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental")
+                                    AlbumView(albumName: "Chill-hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
                                         .frame(maxWidth: geometry.size.width / 2)
                                 }
                             }
