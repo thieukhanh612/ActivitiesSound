@@ -18,7 +18,8 @@ struct SignInView: View {
                     ZStack {
                         Image("SignInImage")
                             .resizable()
-                            .frame( width: .infinity, height:  geometry.size.width)
+                            .frame( width: geometry.size.width, height:  geometry.size.width)
+                            .scaledToFill()
                             .overlay(Color(red: 0, green: 0, blue: 0, opacity: 0.5))
                         VStack(alignment: .leading, spacing: 8.0){
                             Text("Sign in")

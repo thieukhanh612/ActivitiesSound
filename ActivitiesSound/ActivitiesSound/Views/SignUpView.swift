@@ -62,6 +62,7 @@ struct SignUpView: View {
                                         TextField("email", text: $email)
                                             .foregroundColor(.white)
                                             .font(.footnote)
+                                            
                                     }
                                     .padding()
                                     .background(Color(red: 49/255, green: 62/255, blue: 85/255, opacity: 0.78))

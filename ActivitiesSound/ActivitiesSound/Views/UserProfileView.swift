@@ -48,7 +48,7 @@ struct UserProfileView: View {
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                         ScrollView(.horizontal){
-                            HStack(spacing: 15) {
+                            HStack(spacing: 30) {
                                 AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
                                     .frame(maxWidth: geometry.size.width / 3)
                                 AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Studying")
@@ -57,9 +57,11 @@ struct UserProfileView: View {
                                     .frame(maxWidth: geometry.size.width / 3)
                                 
                             }
+                            .frame(maxHeight: geometry.size.height / 4)
                             
                                 
                         }
+                    
                         
                     }
                     .padding()
@@ -73,7 +75,7 @@ struct UserProfileView: View {
                             .foregroundColor(.white)
                             .fontWeight(.bold)
                         ScrollView(.horizontal){
-                            HStack(spacing: 15) {
+                            HStack(spacing: 30) {
                                 AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
                                     .frame(maxWidth: geometry.size.width / 3)
                                 AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Cooking")
@@ -82,6 +84,7 @@ struct UserProfileView: View {
                                     .frame(maxWidth: geometry.size.width / 3)
                                 
                             }
+                            .frame(maxHeight: geometry.size.height / 4)
                                                             
                         }
                         

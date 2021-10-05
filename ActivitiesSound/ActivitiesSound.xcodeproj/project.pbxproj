@@ -22,6 +22,9 @@
 		3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */; };
 		3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFDE802708448D001B8C10 /* UserProfileView.swift */; };
 		3DC290A32709973200403390 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC290A22709973200403390 /* LoginView.swift */; };
+		3DFE8EAE270C45F100D82892 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE8EAD270C45F100D82892 /* TabBar.swift */; };
+		3DFE8EB0270C4C1F00D82892 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE8EAF270C4C1F00D82892 /* BlurView.swift */; };
+		3DFE8EB2270C4E2300D82892 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE8EB1270C4E2300D82892 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		3DA8EE8A2708CFAE0068C3BF /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		3DAFDE802708448D001B8C10 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		3DC290A22709973200403390 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3DFE8EAD270C45F100D82892 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		3DFE8EAF270C4C1F00D82892 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		3DFE8EB1270C4E2300D82892 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,9 @@
 				3DC290A22709973200403390 /* LoginView.swift */,
 				3D06716F270A1D5D00016CC9 /* SignInView.swift */,
 				3D067171270A396500016CC9 /* SignUpView.swift */,
+				3DFE8EAD270C45F100D82892 /* TabBar.swift */,
+				3DFE8EAF270C4C1F00D82892 /* BlurView.swift */,
+				3DFE8EB1270C4E2300D82892 /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -297,11 +306,14 @@
 				3D472F0927076C5A00B8D583 /* AlbumDetailView.swift in Sources */,
 				3DAFDE812708448D001B8C10 /* UserProfileView.swift in Sources */,
 				3DA8EE8B2708CFAE0068C3BF /* LaunchScreenView.swift in Sources */,
+				3DFE8EAE270C45F100D82892 /* TabBar.swift in Sources */,
 				3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */,
 				3D067170270A1D5D00016CC9 /* SignInView.swift in Sources */,
 				3D067172270A396500016CC9 /* SignUpView.swift in Sources */,
 				3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */,
 				3D06716E270A1B1600016CC9 /* Helper.swift in Sources */,
+				3DFE8EB2270C4E2300D82892 /* PlayerView.swift in Sources */,
+				3DFE8EB0270C4C1F00D82892 /* BlurView.swift in Sources */,
 				3D472F042706FEB100B8D583 /* AlbumView.swift in Sources */,
 				3DC290A32709973200403390 /* LoginView.swift in Sources */,
 				3D472F062707039900B8D583 /* CustomCircleView.swift in Sources */,
