@@ -11,7 +11,7 @@ import SwiftUI
 struct ActivitiesSoundApp: App {
     var body: some Scene {
         WindowGroup {
-            DiscoverView()
+            LaunchScreenView()
         }
     }
 }

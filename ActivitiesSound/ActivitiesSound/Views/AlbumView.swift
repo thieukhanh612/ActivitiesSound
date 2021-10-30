@@ -43,6 +43,6 @@ struct AlbumView: View {
 }
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "chillout")
+        AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
     }
 }
