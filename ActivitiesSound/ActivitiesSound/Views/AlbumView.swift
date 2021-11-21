@@ -8,41 +8,48 @@
 import SwiftUI
 
 struct AlbumView: View {
-    var albumName: String
-    var albumQuantity: Int
-    var albumType: String
-    var albumImageString: String
+    var model: NewReleasesCellViewModel
     var body: some View {
         ZStack(alignment: .leading){
-            Color(red: 20/255, green: 25/255, blue: 39/255, opacity: 1)
-                .ignoresSafeArea(.all)
-            VStack(alignment: .leading){
-                ZStack(alignment: .topTrailing){
-                    Image(albumImageString)
-                        .resizable()
-                        .cornerRadius(16.0)
-                        .scaledToFill()
-                    
-                    CustomCircleView()
-                        .padding(8.0)
+            LinearGradient(gradient: Gradient(colors: [.init(red: 50/255, green: 50/255, blue: 50/255, opacity: 0.8),.init(red: 42/255, green: 42/255, blue: 42/255, opacity: 0.8),.init(red: 39/255, green: 39/255, blue: 39/255, opacity: 1.0)]), startPoint: .top , endPoint: .bottom)
+            HStack{
+                if #available(iOS 15.0, *) {
+                    AsyncImage(url:  model.artworkURL){ image in
+                        image.resizable()
+                    } placeholder: {
+                        
+                        Image(systemName: "personal")
+                        
+                    }
+                    .frame(width: 80 , height: 80)
+
+                } else {
+                    // Fallback on earlier versions
                 }
-                
-                Text(albumName)
-                    .foregroundColor(.white)
-                    .font(.body)
-                Text("\(albumQuantity) Songs - \(albumType)")
-                    .foregroundColor(Color( red: 235, green: 235, blue: 245, opacity: 0.6))
-                    .font(.footnote)
+                VStack(alignment: .leading){
+                    Text(model.name)
+                        .font(.footnote)
+                        .foregroundColor(.white)
+                        .bold()
+                        .padding(.vertical, 2)
+                        
+                    Spacer()
+                    Text(model.artistName)
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .bold()
+                    Text("Tracks: \(model.numberOfTracks)")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .bold()
+                        .padding(.bottom, 2)
+                }
             }
         }
-        .scaledToFit()
+        .frame(width: 300, height: 80)
+        .cornerRadius(5)
         .ignoresSafeArea()
         
         
-    }
-}
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
     }
 }

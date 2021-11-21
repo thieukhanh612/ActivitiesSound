@@ -2,105 +2,114 @@
 //  UserProfileView.swift
 //  ActivitiesSound
 //
-//  Created by Khanh Thieu on 10/2/21.
+//  Created by Khanh Thieu on 13/11/2021.
 //
 
 import SwiftUI
 
 struct UserProfileView: View {
+    @Binding var userProfile: UserProfile
     var body: some View {
-        ZStack{
-            Color("BackgroundDefaultColor")
-                .ignoresSafeArea()
-            GeometryReader { geometry in
+        ZStack {
+            ZStack{
+                
+                Color("BackgroundDefaultColor")
+                    .ignoresSafeArea()
                 VStack{
+                    Text("Hello \(userProfile.display_name) 😀")
+                        .foregroundColor(.white)
+                        .font(.title)
+                    if #available(iOS 15.0, *) {
+                        AsyncImage(url: URL(string: userProfile.images.first?.url ?? "" )){ image in
+                            image.resizable()
+                        } placeholder: {
+                            
+                            Image(systemName: "personal")
+                            
+                        }
+                        .frame(width: 120 , height: 120)
+                        .clipShape(Circle())
+                        .padding()
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     HStack{
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
+                        VStack{
+                            Divider()
+                                .background(Color.white)
+                                .padding(.horizontal,2)
+                        }
+                        Text("User profile")
                             .foregroundColor(.white)
-                            .frame(maxWidth: geometry.size.width / 5, maxHeight: geometry.size.width / 5)
-                            .scaledToFit()
-                            .padding()
-                        VStack(alignment: .leading,spacing: 10){
-                            Text("Name: Kean")
-                                .foregroundColor(.white)
-                                .font(.body)
-                                .fontWeight(.bold)
-                            Text("DOB: 06/12/2000")
-                                .foregroundColor(.white)
-                                .font(.body)
-                                .fontWeight(.bold)
+                        VStack{
+                            Divider()
+                                .background(Color.white)
+                                .padding(.horizontal,2)
+                        }
+                    }
+                    VStack(alignment: .leading, spacing: 30) {
+                        TitleView(title: "Personal information:")
+                        VStack(alignment: .leading, spacing: 20) {
+                            ContentView(content: "Country: \(userProfile.country)")
+                            ContentView(content: "Email: \(userProfile.email)")
                         }
                         .padding()
-                        .background(Color( red: 33/255, green: 40/255, blue: 63/255, opacity: 1.0))
-                        .cornerRadius(16.0)
-                        .scaledToFill()
-
-                            
-                    }
-                    .frame(maxHeight: geometry.size.height / 5)
-                    Divider()
-                        .background(Color(.white))
-                        .padding(.vertical)
-                    VStack(alignment: .leading){
-                        Text("Album charged")
-                            .font(.body)
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                        ScrollView(.horizontal){
-                            HStack(spacing: 30) {
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Studying")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sleeping")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                
-                            }
-                            .frame(maxHeight: geometry.size.height / 4)
-                            
-                                
-                        }
-                    
+                        .frame(width: UIScreen.main.bounds.width - 25, alignment: .leading)
+                        .border(Color.secondary, width: 1.0)
+                        .cornerRadius(7.0)
                         
                     }
-                    .padding()
-                    .frame(maxHeight: geometry.size.height / 4)
-                    Divider()
-                        .background(Color(.white))
-                        .padding(.vertical)
-                    VStack(alignment: .leading){
-                        Text("Recently Seen")
-                            .font(.body)
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                        ScrollView(.horizontal){
-                            HStack(spacing: 30) {
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Cooking")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Housework")
-                                    .frame(maxWidth: geometry.size.width / 3)
-                                
-                            }
-                            .frame(maxHeight: geometry.size.height / 4)
-                                                            
+                    VStack(alignment: .leading, spacing: 30) {
+                        TitleView(title: "Account information:")
+                        VStack(alignment: .leading, spacing: 20) {
+                            ContentView(content: "User ID: \(userProfile.id)")
+                            ContentView(content: "Plan: \(userProfile.product)")
                         }
+                        .padding()
+                        .frame(width: UIScreen.main.bounds.width - 25, alignment: .leading)
+                        .border(Color.secondary, width: 1.0)
+                        .cornerRadius(7.0)
                         
                     }
-                    .padding()
-                    .frame(maxHeight: geometry.size.height / 4)
-
+                    .padding(.top, 25)
+                    Spacer()
                 }
                 .padding()
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement: .principal){
+                    Text("Profile")
+                        .foregroundColor(Color.white)
+                        .fontWeight(.bold)
+                }
+            }
+            
         }
     }
 }
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView()
+        UserProfileView(userProfile: Binding.constant(UserProfile(country: "", display_name: "", email: "", explicit_content: ["":false], external_urls: ["": ""], id: "", product: "", images: [UserImage.init(url: "")])) )
+    }
+}
+
+struct TitleView: View {
+    let title: String
+    var body: some View {
+        Text(title)
+            .foregroundColor(Color.white)
+            .font(.title)
+            .fontWeight(.bold)
+    }
+}
+
+struct ContentView: View {
+    let content: String
+    var body: some View {
+        Text(content)
+            .foregroundColor(.white)
+            .font(.body)
     }
 }

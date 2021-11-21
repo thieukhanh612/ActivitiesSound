@@ -8,110 +8,118 @@
 import SwiftUI
 
 struct DiscoverView: View {
+    @State var newAlbums: [Album] = []
+    @State var playlists: [Playlist] = []
+    @State var tracks: [AudioTrack] = []
+    @State var newReleases : [NewReleasesCellViewModel] = []
+    @State var featuredPlaylist: [FeaturedPlaylistCellViewModel] = []
+    @State var recommendedTracks: [RecommendedTrackCellViewModel] = []
+    @ObservedObject var playerViewModel: PlayerViewModel
     var body: some View {
-        
-        ZStack {
-            Color("BackgroundDefaultColor")
-                .ignoresSafeArea(.all)
-            VStack(spacing: 8){
-                VStack{
-                    Text("Sleep")
-                        .fontWeight(.bold)
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                }
-                .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 140, alignment: .bottomLeading)
-                .padding()
-                ScrollView(.horizontal) {
-                    HStack(spacing: 16){
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Image(systemName: "circle.grid.3x3.fill")
-                                .foregroundColor(.white)
-                            Text("All")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                            
-                        })
-                        .padding(16)
-                        .background(Color( red: 72/255, green: 112/255, blue: 255/255, opacity: 1))
-                        .cornerRadius(24.0)
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Image(systemName: "circle.grid.3x3.fill")
-                                .foregroundColor(.white)
-                            Text("Ambient")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                        })
-                        .padding(16.0)
-                        .background(Color( red: 33/255, green: 40/255, blue: 63/255, opacity: 1))
-                        .cornerRadius(24.0)
-                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                            Image(systemName: "circle.grid.3x3.fill")
-                                .foregroundColor(.white)
-                            Text("For Kids")
-                                .foregroundColor(.white)
-                                .font(.headline)
-                        })
-                        .padding(16)
-                        .background(Color( red: 33/255, green: 40/255, blue: 63/255, opacity: 1))
-                        .cornerRadius(24.0)
+        NavigationView {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.init( red: 58/255, green: 157/255, blue: 18/255, opacity: 1), .init(red: 18/255, green: 18/255, blue: 18/25)]), startPoint: .top, endPoint: .bottom)
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Text("Browse")
+                            .foregroundColor(.white)
+                            .font(.largeTitle)
+                            .bold()
+                            .padding(.horizontal, 20)
+                            .padding(.top, 80)
+                        NewReleasesCollectionView(models: newReleases, albums: newAlbums, playerViewModel: playerViewModel)
+                        FeaturedPlaylistCollectionView(featuredPlaylist: featuredPlaylist, playlists: playlists, playerViewModel: playerViewModel)
+                        RecommendedTrackCollectionView(recommendedTracks: recommendedTracks,tracks: tracks, playerViewModel:playerViewModel)
+                        Spacer()
+                        
                         
                         
                     }
                 }
-                .padding()
-                .scaledToFit()
-                ScrollView{
-                    VStack{
-                        HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Chillout")
-                         
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Cooking")
-                     
-                            
-                        }
-                    }
-                    .padding()
-                    VStack{
-                        HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Funmood")
-                         
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sleeping")
-                            
-                            
-                        }
-                    }
-                    .padding()
-                    VStack{
-                        HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Studying")
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Housework")
-                            
-                        }
-                    }
-                    .padding()
-                    VStack{
-                        HStack(spacing: 15){
-                            AlbumView(albumName: "Guitar Camp", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Workout")
-                      
-                            AlbumView(albumName: "Chill - hop", albumQuantity: 7, albumType: "Instrumental",albumImageString: "Sad")
-
-                        }
-                    }
-                    .padding()
-                }
-                Spacer()
             }
-            
+            .ignoresSafeArea()
+            .onAppear(perform: {
+                fetchData()
+        })
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
+        .navigationBarTitle("Browse")
+        .navigationBarHidden(true)
         
         
     }
+    func fetchData(){
+        var newReleases: NewReleasesResponse?
+        var featuredPlaylist: FeaturedPlaylistResponse?
+        var recommendation: RecommendationsResponse?
+        
+        
+        
+        APICaller.shared.getNewReleases{ result in
+            
+            switch result{
+            case .success(let model):
+                newReleases = model
+                self.newAlbums = newReleases?.albums.items ?? []
+                self.newReleases = newAlbums.compactMap({
+                    return NewReleasesCellViewModel(name: $0.name, artworkURL: URL(string: $0.images.first?.url ?? ""), numberOfTracks: $0.total_tracks, artistName: $0.artists.first?.name ?? "")
+                })
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        }
+        APICaller.shared.getFeaturedPlaylist{ result in
+            
+            switch result{
+            case .success(let model):
+                featuredPlaylist = model
+                self.playlists = featuredPlaylist?.playlists.items ?? []
+                self.featuredPlaylist = playlists.compactMap({
+                    return FeaturedPlaylistCellViewModel(name: $0.name, artworkURl: URL(string: $0.images.first?.url ?? ""), creatorName: $0.owner.display_name)
+                })
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            
+        }
+        
+        APICaller.shared.getReccomendedGenres{ result in
+            
+            switch result{
+            case .success(let model):
+                let genres = model.genres
+                var seeds = Set<String>()
+                while seeds.count < 5 {
+                    if let random = genres.randomElement(){
+                        seeds.insert(random)
+                    }
+                }
+                APICaller.shared.getRecomendations(genres: seeds){
+                    recommendedResult in
+                    switch recommendedResult{
+                    case .success(let model):
+                        recommendation = model
+                        self.tracks = recommendation?.tracks ?? []
+                        self.recommendedTracks = tracks.compactMap({
+                            return RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", atrworkURL: URL(string: $0.album?.images.first?.url ?? ""))
+                        })
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    
 }
 
 struct DiscoverView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoverView()
+        DiscoverView(playerViewModel: PlayerViewModel())
     }
 }
+

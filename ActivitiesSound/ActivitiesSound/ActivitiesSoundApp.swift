@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreMedia
 
 @main
 struct ActivitiesSoundApp: App {
+    @ObservedObject var model = LoginViewModel()
+    @ObservedObject var playerViewModel = PlayerViewModel()
     var body: some Scene {
         WindowGroup {
-            LaunchScreenView()
+           Home(model: model, playerViewModel: playerViewModel)
         }
     }
 }
