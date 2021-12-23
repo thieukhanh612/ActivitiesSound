@@ -21,7 +21,7 @@ struct PlayCircle: View{
                 .opacity(0.5)
                 .frame(width: 32, height: 32, alignment: .center)
             Image(systemName: "play.fill")
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
             
         }
     }
@@ -33,7 +33,7 @@ struct LockCircle: View{
                 .foregroundColor(Color("BackgroundDefaultColor"))
                 .frame(width: 32, height: 32, alignment: .center)
             Image(systemName: "lock.fill")
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
         }
     }
 }

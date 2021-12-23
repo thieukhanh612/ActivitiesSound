@@ -28,19 +28,19 @@ struct PlayerView: View {
                         expand = false
                     }){
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(Color.white.opacity(0.5))
+                            .foregroundColor(Color("SubColor").opacity(0.5))
                             .padding()
                         
                     }
                     Spacer(minLength: 0)
                     Capsule()
-                        .fill(Color.white.opacity(0.5))
+                        .fill(Color("SubColor").opacity(0.5))
                         .frame(width: 80, height: 4)
                         .padding()
                     Spacer()
                     Button(action: shareButton) {
                         Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(.white.opacity(0.5))
+                            .foregroundColor(Color("SubColor").opacity(0.5))
                             .padding()
                     }
                 }
@@ -64,7 +64,7 @@ struct PlayerView: View {
                 }
                 if !expand {
                     Text(playerViewModel.currentTrack?.name ?? "")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("SubColor"))
                         .font(.title2)
                 }
                 Spacer()
@@ -72,20 +72,22 @@ struct PlayerView: View {
                     if !isPlaying {
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
+                            PlaybackPresenter.shared.playerQueue?.play()
                             isPlaying = true
                         }, label: {
                             Image(systemName: "play.fill")
                                 .font(.title2)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("SubColor"))
                         })
                     }
                     else{
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
+                            PlaybackPresenter.shared.playerQueue?.pause()
                             isPlaying = false
                         }, label: {
                             Image(systemName: "stop.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("SubColor"))
                                 .font(.title2)
                             
                         })
@@ -96,7 +98,7 @@ struct PlayerView: View {
                     }, label: {
                         Image(systemName: "forward.fill")
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SubColor"))
                     })
                 }
             }
@@ -104,12 +106,23 @@ struct PlayerView: View {
             if expand{
                 
                 Text(playerViewModel.currentTrack?.name ?? "")
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("SubColor"))
                     .font(.title)
                     .bold()
-                Text(playerViewModel.currentTrack?.artists.first?.name ?? "")
-                    .foregroundColor(.gray)
-                    .font(.title2)
+                Button(action:{
+                    if let url = URL(string: playerViewModel.currentTrack?.artists.first?.external_urls["spotify"] ?? ""){
+                        UIApplication.shared.open(url)
+                    }
+                }){
+                  
+                       
+                        
+                        Text(playerViewModel.currentTrack?.artists.first?.name ?? "")
+                            .foregroundColor(.gray)
+                            .font(.title2)
+                 
+                }
+                
                 HStack{
                     Capsule()
                         .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.7), Color.white.opacity(0.1)]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/))
@@ -128,10 +141,11 @@ struct PlayerView: View {
                 HStack{
                     Button(action: {
                         PlaybackPresenter.shared.didTapBackwards()
+                        PlaybackPresenter.shared.playerQueue?.pause()
                         playerViewModel.currentTrack = PlaybackPresenter.shared.currentTrack
                     }, label: {
                         Image(systemName: "backward.fill")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SubColor"))
                             .font(.largeTitle)
                             .padding(.bottom, 50)
                             .padding(.horizontal, 20)
@@ -140,23 +154,25 @@ struct PlayerView: View {
                     if !isPlaying {
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
+                            
+                            PlaybackPresenter.shared.playerQueue?.play()
                             isPlaying = true
                         }, label: {
                             Image(systemName: "play.fill")
                                 .font(.largeTitle)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("SubColor"))
                                 .padding(.bottom, 50)
-
+                            
                         })
                     }
                     else{
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
-                            
+                            PlaybackPresenter.shared.playerQueue?.pause()
                             isPlaying = false
                         }, label: {
                             Image(systemName: "stop.fill")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("SubColor"))
                                 .font(.largeTitle)
                                 .padding(.bottom, 50)
                         })
@@ -167,7 +183,7 @@ struct PlayerView: View {
                         playerViewModel.currentTrack = PlaybackPresenter.shared.currentTrack
                     }, label: {
                         Image(systemName: "forward.fill")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("SubColor"))
                             .font(.largeTitle)
                             .padding(.bottom, 50)
                             .padding(.horizontal, 20)
@@ -176,14 +192,14 @@ struct PlayerView: View {
                 Spacer()
                 HStack{
                     Image(systemName: "speaker.fill")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("SubColor"))
                         .font(.body)
                     Slider(value: $volume, onEditingChanged: { _ in
                         PlaybackPresenter.shared.didSlideSlider(volume)
                     })
-                        .accentColor(.white)
+                        .accentColor(Color("SubColor"))
                     Image(systemName: "speaker.wave.3.fill")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("SubColor"))
                         .font(.body)
                 }
                 .padding(.horizontal)
@@ -196,7 +212,7 @@ struct PlayerView: View {
             VStack(spacing: 0) {
                 BlurView()
                 Divider()
-                    .background(Color.white)
+                    .background(Color("SubColor"))
             }
                 .onTapGesture(perform: {
                     withAnimation(.spring()){

@@ -15,7 +15,7 @@ struct RecommendedTrackCollectionView: View {
         VStack(alignment: .leading) {
             Text("Recommended")
                 .font(.title)
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .bold() 
                 .padding(.horizontal, 20)
             ScrollView {
@@ -30,7 +30,7 @@ struct RecommendedTrackCollectionView: View {
                                 playerViewModel.showPlayer = true
                             }
                         }) {
-                            TrackView(recommendedTrack: recommendedTracks[value])
+                            TrackView(recommendedTrack: recommendedTracks[value], track: tracks[value])
                         }
                     }
                 }
@@ -49,9 +49,15 @@ struct RecommendedTrackCollectionView_Previews: PreviewProvider {
 
 struct TrackView: View {
     var recommendedTrack : RecommendedTrackCellViewModel
+    var track: AudioTrack
+    var isUserLibrary : Bool = false
+    @State var playlistSelected: Playlist = Playlist.init(description: "", external_urls: ["":""], id: "", images: [], name: "", owner: .init(display_name: "", external_urls: ["":""], id: ""))
+    @State var showAlert: Bool = false
+    @State var success: Bool = false
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.init(red: 50/255, green: 50/255, blue: 50/255, opacity: 0.8),.init(red: 42/255, green: 42/255, blue: 42/255, opacity: 0.8),.init(red: 39/255, green: 39/255, blue: 39/255, opacity: 1.0)]), startPoint: .top , endPoint: .bottom)
+            Color("TextColor")
+                .ignoresSafeArea()
             HStack{
                 if #available(iOS 15.0, *) {
                     AsyncImage(url: recommendedTrack.atrworkURL){ image in
@@ -68,7 +74,7 @@ struct TrackView: View {
                 }
                 VStack(alignment: .leading){
                     Text(recommendedTrack.name)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("BackgroundDefaultColor"))
                         .font(.footnote)
                         .padding(.top, 10)
                     Spacer()
@@ -77,11 +83,56 @@ struct TrackView: View {
                         .foregroundColor(.gray)
                         .padding(.bottom, 10)
                 }
+                
                 Spacer()
+                if !isUserLibrary{
+                    NavigationLink(destination:{
+                        SelectPlaylist(track: track)
+                    }){
+                        Image(systemName: "plus")
+                            .frame(width: 20,height: 20)
+                            .foregroundColor(Color("BackgroundDefaultColor"))
+                            .padding(.trailing, 10)
+                    }
+                }
+                else{
+                    Button(action:{
+                        APICaller.shared.removeTrackFromPlaylist(track: track, playlist: playlistSelected){ result in
+                            switch result{
+                            case true:
+                                success = true
+                            case false:
+                                success = false
+                            }
+                        }
+                        showAlert = true
+                        success = true
+                    }){
+                        Image(systemName: "minus")
+                            .frame(width: 20,height: 20)
+                            .foregroundColor(Color("BackgroundDefaultColor"))
+                            .padding(.trailing, 10)
+                    }
+                }
+                
             }
         }
         .frame(width: UIScreen.main.bounds.width - 20, height: 80)
         .cornerRadius(5.0)
+        .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.gray, lineWidth: 2)
+            )
         .padding(.horizontal, 10)
+        .alert(isPresented: $showAlert){
+            Alert(
+                title:Text( success ? "Successfully" : "Error"),
+                message: Text(success ? "\(track.name) is removed to \(playlistSelected.name) successfuly" : "Please try again"),
+                dismissButton: .default(Text("Okay"), action: {
+                    
+                })
+            )
+            
+        }
     }
 }

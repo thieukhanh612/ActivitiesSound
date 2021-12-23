@@ -44,9 +44,11 @@ struct ButtonAndText: View {
         GeometryReader { geometry in
             VStack(alignment: .center){
                 Spacer()
-                Button(action: {showTabBar.toggle()}, label: {
+                Button(action: {
+                    
+                }, label: {
                     Text("Get Started")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("TextColor"))
                         .font(.title)
                         .bold()
                         .padding()

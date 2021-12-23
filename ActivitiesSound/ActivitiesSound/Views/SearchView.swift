@@ -14,6 +14,7 @@ struct SearchView: View {
     @State var categories: [Category] = []
     @State var result: [SearchResult] = []
     @ObservedObject var playerViewModel: PlayerViewModel
+    @State var isFetch: Bool = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -24,7 +25,7 @@ struct SearchView: View {
                         Text("Search")
                             .font(.largeTitle)
                             .bold()
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("TextColor"))
                         SearchBar(text: $searchText, result: $result)
                         if result.isEmpty {
                             LazyVGrid(columns: gridItemLayout, spacing: 20){
@@ -74,17 +75,19 @@ struct SearchView: View {
                 }
             }
             .onAppear(perform: {
+                if !isFetch{
                 APICaller.shared.getCategory{[self] result in
                     DispatchQueue.main.async {
                         switch result{
                         case .success(let categories):
                             self.categories = categories
+                            self.isFetch = true
                         case .failure(let error):
                             print(error.localizedDescription)
                         }
                     }
                 }
-                print(categories.count)
+                }
             })
             .navigationBarHidden(true)
         }
@@ -144,7 +147,7 @@ struct CategoryView: View{
                 Spacer()
                 HStack{
                     Text(category.name)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("TextColor"))
                         .font(.title3)
                         .bold()
                         .padding()
@@ -228,7 +231,7 @@ struct SectionView: View{
     var body: some View{
         VStack(alignment: .leading){
             Text(title)
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .font(.title3)
                 .bold()
             ForEach( 0 ..< result.count, id: \.self){ value in
@@ -258,13 +261,13 @@ struct SectionView: View{
                             }
                             VStack(alignment: .leading){
                                 Text(track.name)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color("TextColor"))
                                     .font(.footnote)
                                     .padding(.top, 10)
                                 Spacer()
                                 Text(track.artists.first?.name ?? "")
                                     .font(.footnote)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color("SubTextColor"))
                                     .padding(.bottom, 10)
                             }
                             Spacer()
@@ -274,7 +277,11 @@ struct SectionView: View{
                                 .foregroundColor(.gray)
                                 .padding()
                         }
-                        .background(Color.secondary)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.gray, lineWidth: 2)
+                            )
+                        
                     }
                     
                 case .playlist(model: let playlist):
@@ -295,13 +302,13 @@ struct SectionView: View{
                             }
                             VStack(alignment: .leading){
                                 Text(playlist.name)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color("TextColor"))
                                     .font(.footnote)
                                     .padding(.top, 10)
                                 Spacer()
                                 Text(playlist.owner.display_name)
                                     .font(.footnote)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color("SubTextColor"))
                                     .padding(.bottom, 10)
                             }
                             Spacer()
@@ -311,7 +318,10 @@ struct SectionView: View{
                                 .foregroundColor(.gray)
                                 .padding()
                         }
-                        .background(Color.secondary)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.gray, lineWidth: 2)
+                            )
                     }
                 case .album(model: let album):
                     NavigationLink(destination: AlbumDetailView(album: album, playerViewModel:playerViewModel)) {
@@ -331,23 +341,26 @@ struct SectionView: View{
                             }
                             VStack(alignment: .leading){
                                 Text(album.name)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color("TextColor"))
                                     .font(.footnote)
                                     .padding(.top, 10)
                                 Spacer()
                                 Text(album.artists.first?.name ?? "")
                                     .font(.footnote)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color("SubTextColor"))
                                     .padding(.bottom, 10)
                             }
                             Spacer()
                             Image(systemName:"chevron.compact.right")
                                 .resizable()
                                 .frame(width: 10, height: 10)
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color("SubTextColor"))
                                 .padding()
                         }
-                        .background(Color.secondary)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.gray, lineWidth: 2)
+                            )
                     }
 
                 case .artist(model: let artist):
@@ -372,7 +385,7 @@ struct SectionView: View{
                                 // Fallback on earlier versions
                             }
                             Text(artist.name)
-                                .foregroundColor(.white)
+                                .foregroundColor(Color("TextColor"))
                                 .font(.footnote)
                                 .padding(.top, 10)
                             
@@ -380,10 +393,13 @@ struct SectionView: View{
                             Image(systemName:"chevron.compact.right")
                                 .resizable()
                                 .frame(width: 10, height: 10)
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color("SubTextColor"))
                                 .padding()
                         }
-                        .background(Color.secondary)
+                        .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.gray, lineWidth: 2)
+                            )
                     }
 
                 }

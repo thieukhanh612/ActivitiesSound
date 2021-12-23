@@ -11,7 +11,8 @@ struct AlbumView: View {
     var model: NewReleasesCellViewModel
     var body: some View {
         ZStack(alignment: .leading){
-            LinearGradient(gradient: Gradient(colors: [.init(red: 50/255, green: 50/255, blue: 50/255, opacity: 0.8),.init(red: 42/255, green: 42/255, blue: 42/255, opacity: 0.8),.init(red: 39/255, green: 39/255, blue: 39/255, opacity: 1.0)]), startPoint: .top , endPoint: .bottom)
+            Color("TextColor")
+                .ignoresSafeArea()
             HStack{
                 if #available(iOS 15.0, *) {
                     AsyncImage(url:  model.artworkURL){ image in
@@ -22,6 +23,7 @@ struct AlbumView: View {
                         
                     }
                     .frame(width: 80 , height: 80)
+                    .padding(.horizontal, 5)
 
                 } else {
                     // Fallback on earlier versions
@@ -29,27 +31,30 @@ struct AlbumView: View {
                 VStack(alignment: .leading){
                     Text(model.name)
                         .font(.footnote)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("BackgroundDefaultColor"))
                         .bold()
                         .padding(.vertical, 2)
                         
                     Spacer()
                     Text(model.artistName)
                         .font(.footnote)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("SubTextColor"))
                         .bold()
                     Text("Tracks: \(model.numberOfTracks)")
                         .font(.footnote)
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color("SubTextColor"))
                         .bold()
                         .padding(.bottom, 2)
                 }
+                Spacer()
             }
         }
         .frame(width: 300, height: 80)
         .cornerRadius(5)
+        .overlay(
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(Color.gray, lineWidth: 2)
+        )
         .ignoresSafeArea()
-        
-        
     }
 }

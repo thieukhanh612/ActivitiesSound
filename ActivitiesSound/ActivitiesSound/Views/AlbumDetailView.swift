@@ -12,6 +12,7 @@ struct AlbumDetailView: View {
     @State var tracks :[AudioTrack] = []
     @State var viewModel :[AlbumCollectionViewCellViewModel] = []
     @ObservedObject var playerViewModel: PlayerViewModel
+    @State var showAlert: Bool = false
     var body: some View {
         ZStack {
             Color("BackgroundDefaultColor")
@@ -33,11 +34,11 @@ struct AlbumDetailView: View {
                     }
                     VStack(alignment: .leading) {
                         Text(album.name)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("TextColor"))
                             .font(.title)
                             .padding(.horizontal, 10)
                         Text("Release Date: \(album.release_date)")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color("SubTextColor"))
                             .font(.body)
                             .padding(.top, 5)
                             .lineLimit(2)
@@ -47,10 +48,16 @@ struct AlbumDetailView: View {
                     }
                     .frame(width: UIScreen.main.bounds.width, alignment: .leading)
                     HStack(alignment: .top) {
+                        Button(action:{
+                            if let url = URL(string: album.artists.first?.external_urls["spotify"] ?? ""){
+                                UIApplication.shared.open(url)
+                            }
+                        }){
                         Text(album.artists.first?.name ?? "")
                             .foregroundColor(.gray)
                             .font(.body)
                             .padding(.horizontal, 10)
+                        }
                         Spacer()
                         Button(action:{
                             PlaybackPresenter.shared.player?.pause()
@@ -61,10 +68,10 @@ struct AlbumDetailView: View {
                             Image(systemName: "play.circle.fill")
                                 .resizable()
                                 .foregroundColor(.green)
-                                .background(Color.white)
+                                .background(Color("TextColor"))
                                 .clipShape(Circle())
                                 .frame(width: 64, height: 64)
-                            .padding(.horizontal, 5)
+                                .padding(.horizontal, 5)
                         }
                     }
                     ScrollView{
@@ -105,14 +112,46 @@ struct AlbumDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(content: {
             ToolbarItem(placement: .principal, content: {
-                
-                Text(album.name)
-                    .font(.headline)
-                    .foregroundColor(.black)
-                
+                HStack{
+                    Spacer()
+                    
+                    Text(album.name)
+                        .font(.headline)
+                        .foregroundColor(Color("TextColor"))
+                    Spacer()
+                    Button(action:{
+                        showAlert = true
+                    }){
+                        Image(systemName: "plus.square.fill")
+                            .foregroundColor(Color("TextColor"))
+                        
+                    }
+                }
                 
             })
         })
+        .alert(isPresented: $showAlert){
+            Alert(
+                title:Text("Save album?"),
+                message: Text("Do you want to save this album to your library?"),
+                primaryButton: .cancel(Text("Cancle"), action: {
+                    showAlert = false
+                    
+                }),
+                secondaryButton: .destructive(Text("Yes"), action: {
+                    APICaller.shared.saveAlbum(album: album){ success in
+                        if success{
+                            HapticsManager.shared.vibrate(for: .success)
+                            NotificationCenter.default.post(name: .albumSavedNotification, object: nil)
+                        }
+                        else{
+                            HapticsManager.shared.vibrate(for: .error)
+                        }
+                    }
+                })
+            )
+            
+        }
         
     }
 }
@@ -120,15 +159,15 @@ struct SongsView: View {
     var song: AlbumCollectionViewCellViewModel
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.init(red: 50/255, green: 50/255, blue: 50/255, opacity: 0.8),.init(red: 42/255, green: 42/255, blue: 42/255, opacity: 0.8),.init(red: 39/255, green: 39/255, blue: 39/255, opacity: 1.0)]), startPoint: .top , endPoint: .bottom)
+            Color("TextColor")
             HStack{
                 Rectangle()
                     .frame(width: 80, height: 80)
                     .background(LinearGradient(gradient: Gradient(colors: [.init(red: 50/255, green: 50/255, blue: 50/255, opacity: 0.8),.init(red: 42/255, green: 42/255, blue: 42/255, opacity: 0.8),.init(red: 39/255, green: 39/255, blue: 39/255, opacity: 1.0)]), startPoint: .top , endPoint: .bottom)
-)
+                    )
                 VStack(alignment: .leading){
                     Text(song.name)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("BackgroundDefaultColor"))
                         .font(.footnote)
                         .padding(.top, 10)
                     Spacer()
@@ -146,8 +185,8 @@ struct SongsView: View {
     }
 }
 
-    //struct AlbumDetailView_Previews: PreviewProvider {
-    //    static var previews: some View {
-    ////        AlbumDetailView()
-    //    }
-    //}
+//struct AlbumDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        AlbumDetailView()
+//    }
+//}

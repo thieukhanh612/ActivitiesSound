@@ -17,7 +17,7 @@ struct NewReleasesCollectionView: View {
             Text("New Releases")
                 .font(.title)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .padding(.horizontal, 20)
             ScrollView(.horizontal){
                 LazyHGrid(rows:gridItemLayout, spacing: 8){
@@ -26,8 +26,6 @@ struct NewReleasesCollectionView: View {
                         NavigationLink(destination: AlbumDetailView(album: albums[value], playerViewModel: playerViewModel)) {
                             AlbumView(model: model)
                         }
-                                        
-                        
                     }
                 }
             }

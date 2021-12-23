@@ -38,7 +38,7 @@ struct CategoryPlaylistView: View {
         .toolbar(content: {
             ToolbarItem(placement: .principal, content: {
                 Text(category.name)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color("TextColor"))
                     .bold()
             })
         })

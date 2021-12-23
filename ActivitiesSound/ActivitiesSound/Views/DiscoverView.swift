@@ -14,19 +14,74 @@ struct DiscoverView: View {
     @State var newReleases : [NewReleasesCellViewModel] = []
     @State var featuredPlaylist: [FeaturedPlaylistCellViewModel] = []
     @State var recommendedTracks: [RecommendedTrackCellViewModel] = []
+    @State var showDropBox: Bool = false
+    @State var option: DropdownOption = DropdownOption(key: UUID().uuidString, value: "")
+    @State var showOptionRecommend: Bool = false
+    @State var isFetched: Bool = false
+    static var uniqueKey: String {
+        UUID().uuidString
+    }
+    
+    static let options: [DropdownOption] = [
+        DropdownOption(key: uniqueKey, value: "Normal cooking"),
+        DropdownOption(key: uniqueKey, value: "Making cake"),
+        DropdownOption(key: uniqueKey, value: "Outside cooking"),
+        DropdownOption(key: uniqueKey, value: "Workout"),
+        DropdownOption(key: uniqueKey, value: "Walking"),
+        DropdownOption(key: uniqueKey, value: "Skilled trades"),
+        DropdownOption(key: uniqueKey, value: "Technical"),
+        DropdownOption(key: uniqueKey, value: "Tatical games"),
+        DropdownOption(key: uniqueKey, value: "Video games"),
+        DropdownOption(key: uniqueKey, value: "Housework"),
+        DropdownOption(key: uniqueKey, value: "Sleeping"),
+        DropdownOption(key: uniqueKey, value: "Chillout"),
+        DropdownOption(key: uniqueKey, value: "Fun mood"),
+        DropdownOption(key: uniqueKey, value: "Sad mood"),
+        DropdownOption(key: uniqueKey, value: "Dance")
+    ]
     @ObservedObject var playerViewModel: PlayerViewModel
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [.init( red: 58/255, green: 157/255, blue: 18/255, opacity: 1), .init(red: 18/255, green: 18/255, blue: 18/25)]), startPoint: .top, endPoint: .bottom)
+                
+                Color("BackgroundDefaultColor")
+                    .ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text("Browse")
-                            .foregroundColor(.white)
+                        NavigationLink(destination: ActivityMusicRecommendResult(playerViewModel: playerViewModel, option: option), isActive: $showOptionRecommend){
+                            EmptyView()
+                        }
+                        Text("Discover")
+                            .foregroundColor(Color("TextColor"))
                             .font(.largeTitle)
                             .bold()
                             .padding(.horizontal, 20)
                             .padding(.top, 80)
+                        Text("What are you doing ?")
+                            .foregroundColor(Color("TextColor").opacity(0.6))
+                            .padding(.horizontal, 20)
+                            .padding(.top, 10)
+                        
+                        Group {
+                            DropBox(
+                                shouldShowDropdown: $showDropBox,
+                                placeholder: "Choose what are you doing",
+                                options: DiscoverView.options,
+                                onOptionSelected: { option in
+                                    print(option)
+                                    self.option = option
+                                    showOptionRecommend = true
+                                    
+                                }, playerViewModel: playerViewModel)
+                                .padding(.horizontal)
+                        }
+                        
+                        
+                        if showDropBox{
+                            VStack{
+                                
+                            }.frame(height:CGFloat(DiscoverView.options.count) * 30 )
+                        }
                         NewReleasesCollectionView(models: newReleases, albums: newAlbums, playerViewModel: playerViewModel)
                         FeaturedPlaylistCollectionView(featuredPlaylist: featuredPlaylist, playlists: playlists, playerViewModel: playerViewModel)
                         RecommendedTrackCollectionView(recommendedTracks: recommendedTracks,tracks: tracks, playerViewModel:playerViewModel)
@@ -39,8 +94,10 @@ struct DiscoverView: View {
             }
             .ignoresSafeArea()
             .onAppear(perform: {
+                if !isFetched{
                 fetchData()
-        })
+                }
+            })
             .navigationBarHidden(true)
         }
         .navigationBarTitle("Browse")
@@ -101,6 +158,7 @@ struct DiscoverView: View {
                     case .success(let model):
                         recommendation = model
                         self.tracks = recommendation?.tracks ?? []
+                        print(tracks)
                         self.recommendedTracks = tracks.compactMap({
                             return RecommendedTrackCellViewModel(name: $0.name, artistName: $0.artists.first?.name ?? "-", atrworkURL: URL(string: $0.album?.images.first?.url ?? ""))
                         })
@@ -112,6 +170,7 @@ struct DiscoverView: View {
                 print(error.localizedDescription)
             }
         }
+        isFetched = true
     }
     
     

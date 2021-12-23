@@ -87,6 +87,7 @@ extension PlaybackPresenter: PlayerViewControllerDelegate {
                 player.play()
             }
         }
+        
     }
     
     func didTapForward() {

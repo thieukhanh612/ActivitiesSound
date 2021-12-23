@@ -12,6 +12,9 @@ struct PlaylistDetailView: View {
     @State var tracks :[AudioTrack] = []
     @State var viewModel :[RecommendedTrackCellViewModel] = []
     @ObservedObject var playerViewModel: PlayerViewModel
+    
+    var isUserPlaylist: Bool = false
+    
     var body: some View {
         ZStack {
             Color("BackgroundDefaultColor")
@@ -61,7 +64,7 @@ struct PlaylistDetailView: View {
                             Image(systemName: "play.circle.fill")
                                 .resizable()
                                 .foregroundColor(.green)
-                                .background(Color.white)
+                                .background(Color("TextColor"))
                                 .clipShape(Circle())
                                 .frame(width: 64, height: 64)
                                 .padding(.horizontal, 5)
@@ -78,7 +81,11 @@ struct PlaylistDetailView: View {
                                         playerViewModel.showPlayer = true
                                     }
                                 }) {
-                                    TrackView(recommendedTrack: viewModel[value])
+                                    if isUserPlaylist{
+                                        TrackView(recommendedTrack: viewModel[value],track: tracks[value], isUserLibrary: isUserPlaylist,playlistSelected: playlist)
+                                    }else{
+                                        TrackView(recommendedTrack: viewModel[value],track: tracks[value])
+                                    }
                                 }
                             }
                         }
@@ -107,11 +114,11 @@ struct PlaylistDetailView: View {
                     Spacer()
                     Text(playlist.name)
                         .font(.headline)
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("TextColor"))
                     Spacer()
                     Button(action: shareButton) {
                         Image(systemName: "square.and.arrow.up")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("TextColor"))
                     }
                 }
             })
@@ -129,7 +136,7 @@ struct PlaylistDetailView: View {
 struct PlaylistDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PlaylistDetailView(playlist: .init(description: "", external_urls: ["":""], id: "", images: [], name: "", owner: .init(display_name: "", external_urls: ["":""], id: "")), playerViewModel: PlayerViewModel())
+            PlaylistDetailView(playlist: .init(description: "", external_urls: ["":""], id: "", images: [], name: "", owner: .init(display_name: "", external_urls: ["":""], id: "")), playerViewModel: PlayerViewModel(),isUserPlaylist: false)
         }
     }
 }

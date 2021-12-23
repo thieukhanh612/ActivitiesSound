@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+
+
 struct TabBar: View {
     @State var current = 1
-    @State var expand = false
+    @State var expand = true
     @ObservedObject var model: LoginViewModel
     @ObservedObject var playerViewModel: PlayerViewModel
     var body: some View {
@@ -27,6 +29,7 @@ struct TabBar: View {
                     }
                     .tag(1)
                     .navigationTitle("Home")
+                    .transition(.slide)
                 SearchView(playerViewModel: playerViewModel)
                     .tabItem{
                         VStack(spacing: 6){
@@ -36,6 +39,7 @@ struct TabBar: View {
                     }
                     .tag(2)
                     .navigationTitle("Search")
+                    .transition(.slide)
                 SettingViews(model: model, playerViewModel: playerViewModel)
                     .tabItem {
                         VStack{
@@ -44,6 +48,7 @@ struct TabBar: View {
                         }
                     }
                     .tag(3)
+                    .transition(.slide)
             })
                 .accentColor(Color(red: 72/255, green: 112/255, blue: 255/255))
                 .onAppear(){

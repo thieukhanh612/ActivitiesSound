@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		01BA75CC6813A700A3D58C62 /* Pods_ActivitiesSound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430E07959E4852AA43FAC71B /* Pods_ActivitiesSound.framework */; };
+		3D035F572774B30600F77BA0 /* SelectPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F562774B30600F77BA0 /* SelectPlaylist.swift */; };
 		3D06716E270A1B1600016CC9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06716D270A1B1600016CC9 /* Helper.swift */; };
 		3D170A9C273FC44100B69374 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D170A9B273FC44100B69374 /* UserProfileView.swift */; };
 		3D3CAC45274953F000EB7A8A /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CAC44274953F000EB7A8A /* PlayerViewModel.swift */; };
+		3D3D96B2275290D000E6D2A8 /* ActivityMusicRecommendResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3D96B1275290D000E6D2A8 /* ActivityMusicRecommendResult.swift */; };
 		3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472ECC2706F01E00B8D583 /* ActivitiesSoundApp.swift */; };
 		3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D472ECE2706F01E00B8D583 /* DiscoverView.swift */; };
 		3D472ED12706F02000B8D583 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D472ED02706F02000B8D583 /* Assets.xcassets */; };
@@ -61,6 +63,9 @@
 		3DAFDE812708448D001B8C10 /* SettingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFDE802708448D001B8C10 /* SettingViews.swift */; };
 		3DBC0BE32747C0D700E96A7B /* PlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBC0BE22747C0D700E96A7B /* PlaylistDetailView.swift */; };
 		3DCB7026272DD409003F85B7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB7025272DD409003F85B7 /* Home.swift */; };
+		3DCF1FF4275287490008292A /* DropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCF1FF3275287490008292A /* DropBox.swift */; };
+		3DD2E31B27639BAE003279D9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2E31A27639BAE003279D9 /* Extensions.swift */; };
+		3DD3D5DE27735F6E00D26EC6 /* UserLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3D5DD27735F6E00D26EC6 /* UserLibrary.swift */; };
 		3DF180922748ED4500C708E2 /* CategoryPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF180912748ED4500C708E2 /* CategoryPlaylistView.swift */; };
 		3DFE8EAE270C45F100D82892 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE8EAD270C45F100D82892 /* TabBar.swift */; };
 		3DFE8EB0270C4C1F00D82892 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFE8EAF270C4C1F00D82892 /* BlurView.swift */; };
@@ -85,9 +90,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D035F562774B30600F77BA0 /* SelectPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlaylist.swift; sourceTree = "<group>"; };
 		3D06716D270A1B1600016CC9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3D170A9B273FC44100B69374 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		3D3CAC44274953F000EB7A8A /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		3D3D96B1275290D000E6D2A8 /* ActivityMusicRecommendResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMusicRecommendResult.swift; sourceTree = "<group>"; };
 		3D472EC92706F01E00B8D583 /* ActivitiesSound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ActivitiesSound.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D472ECC2706F01E00B8D583 /* ActivitiesSoundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesSoundApp.swift; sourceTree = "<group>"; };
 		3D472ECE2706F01E00B8D583 /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
@@ -144,6 +151,9 @@
 		3DAFDE802708448D001B8C10 /* SettingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViews.swift; sourceTree = "<group>"; };
 		3DBC0BE22747C0D700E96A7B /* PlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailView.swift; sourceTree = "<group>"; };
 		3DCB7025272DD409003F85B7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		3DCF1FF3275287490008292A /* DropBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBox.swift; sourceTree = "<group>"; };
+		3DD2E31A27639BAE003279D9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3DD3D5DD27735F6E00D26EC6 /* UserLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLibrary.swift; sourceTree = "<group>"; };
 		3DF180912748ED4500C708E2 /* CategoryPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPlaylistView.swift; sourceTree = "<group>"; };
 		3DFE8EAD270C45F100D82892 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		3DFE8EAF270C4C1F00D82892 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -213,6 +223,7 @@
 		3D472ECB2706F01E00B8D583 /* ActivitiesSound */ = {
 			isa = PBXGroup;
 			children = (
+				3DD2E31A27639BAE003279D9 /* Extensions.swift */,
 				3D89E189273EF96300D4EF06 /* ViewModels */,
 				3D89E186273EF94D00D4EF06 /* Presenter */,
 				3D89E161273EF93E00D4EF06 /* Models */,
@@ -274,6 +285,10 @@
 				3DBC0BE22747C0D700E96A7B /* PlaylistDetailView.swift */,
 				3D6192C72748027200E17B53 /* SearchView.swift */,
 				3DF180912748ED4500C708E2 /* CategoryPlaylistView.swift */,
+				3DCF1FF3275287490008292A /* DropBox.swift */,
+				3D3D96B1275290D000E6D2A8 /* ActivityMusicRecommendResult.swift */,
+				3DD3D5DD27735F6E00D26EC6 /* UserLibrary.swift */,
+				3D035F562774B30600F77BA0 /* SelectPlaylist.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -522,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DD3D5DE27735F6E00D26EC6 /* UserLibrary.swift in Sources */,
 				3D751E35273EF82E006F515A /* HapticsManager.swift in Sources */,
 				3D472F0927076C5A00B8D583 /* AlbumDetailView.swift in Sources */,
 				3D89E179273EF93E00D4EF06 /* SearchResults.swift in Sources */,
@@ -542,6 +558,7 @@
 				3D3CAC45274953F000EB7A8A /* PlayerViewModel.swift in Sources */,
 				3D89E174273EF93E00D4EF06 /* SettingModels.swift in Sources */,
 				3DFE8EAE270C45F100D82892 /* TabBar.swift in Sources */,
+				3DD2E31B27639BAE003279D9 /* Extensions.swift in Sources */,
 				3D89E180273EF93E00D4EF06 /* FeaturedPlaylistResponse.swift in Sources */,
 				3D472ECF2706F01E00B8D583 /* DiscoverView.swift in Sources */,
 				3DCB7026272DD409003F85B7 /* Home.swift in Sources */,
@@ -570,9 +587,12 @@
 				3D89E181273EF93E00D4EF06 /* AudioTrack.swift in Sources */,
 				3D751E34273EF82E006F515A /* APICaller.swift in Sources */,
 				3D89E195273EF96300D4EF06 /* PlaylistHeaderViewViewModel.swift in Sources */,
+				3D3D96B2275290D000E6D2A8 /* ActivityMusicRecommendResult.swift in Sources */,
 				3D472F062707039900B8D583 /* CustomCircleView.swift in Sources */,
+				3D035F572774B30600F77BA0 /* SelectPlaylist.swift in Sources */,
 				3D751E2A273EF139006F515A /* LoginWebView.swift in Sources */,
 				3D89E1A2273FAEBD00D4EF06 /* LoginViewModel.swift in Sources */,
+				3DCF1FF4275287490008292A /* DropBox.swift in Sources */,
 				3D89E184273EF93E00D4EF06 /* RecommendationsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

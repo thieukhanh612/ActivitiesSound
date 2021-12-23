@@ -17,7 +17,7 @@ struct UserProfileView: View {
                     .ignoresSafeArea()
                 VStack{
                     Text("Hello \(userProfile.display_name) 😀")
-                        .foregroundColor(.white)
+                        .foregroundColor(Color("TextColor"))
                         .font(.title)
                     if #available(iOS 15.0, *) {
                         AsyncImage(url: URL(string: userProfile.images.first?.url ?? "" )){ image in
@@ -36,14 +36,14 @@ struct UserProfileView: View {
                     HStack{
                         VStack{
                             Divider()
-                                .background(Color.white)
+                                .background(Color("TextColor"))
                                 .padding(.horizontal,2)
                         }
                         Text("User profile")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("TextColor"))
                         VStack{
                             Divider()
-                                .background(Color.white)
+                                .background(Color("TextColor"))
                                 .padding(.horizontal,2)
                         }
                     }
@@ -80,7 +80,7 @@ struct UserProfileView: View {
             .toolbar{
                 ToolbarItem(placement: .principal){
                     Text("Profile")
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color("TextColor"))
                         .fontWeight(.bold)
                 }
             }
@@ -99,7 +99,7 @@ struct TitleView: View {
     let title: String
     var body: some View {
         Text(title)
-            .foregroundColor(Color.white)
+            .foregroundColor(Color("TextColor"))
             .font(.title)
             .fontWeight(.bold)
     }
@@ -109,7 +109,7 @@ struct ContentView: View {
     let content: String
     var body: some View {
         Text(content)
-            .foregroundColor(.white)
+            .foregroundColor(Color("TextColor"))
             .font(.body)
     }
 }

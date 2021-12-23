@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct SettingViews: View {
+    
     @ObservedObject var model: LoginViewModel
     @ObservedObject var playerViewModel: PlayerViewModel
+    
     @State var showUserProfile: Bool = false
     @State var userProfile = UserProfile(country: "", display_name: "", email: "", explicit_content: ["":false], external_urls: ["": ""], id: "", product: "", images: [UserImage.init(url: "")])
+    @State var showUserLibrary: Bool = false
     var body: some View {
         NavigationView {
             ZStack{
@@ -20,22 +23,29 @@ struct SettingViews: View {
                     , label: {
                         Text("Profile")
                     })
+                NavigationLink(isActive: $showUserLibrary, destination:
+                                {UserLibrary(playerViewModel: playerViewModel)}
+                , label: {
+                    Text("My Library")
+                })
                     Color("BackgroundDefaultColor")
                         .ignoresSafeArea()
                     VStack{
                         Text("Settings")
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("BackgroundDefaultColor"))
                             .font(.largeTitle)
                             .fontWeight(.heavy)
                             .padding(.top, 40)
                             .padding(.bottom, 20)
                             .frame(width: UIScreen.main.bounds.width)
-                            .background(Color.secondary)
+                            .background(Color("TextColor"))
                             .ignoresSafeArea()
-                        UserProfileButton(optionText: "PROFILE", optionButtonText: "View Your Profile", showUserProfile: $showUserProfile, userProfile: $userProfile)
+                        UserProfileButton(optionText: "PROFILE", optionButtonText: "View Your Profile", showUserProfile: $showUserProfile, userProfile: $userProfile, showUserLibrary: $showUserLibrary)
                             .padding()
+                        
                         SignOutButton(optionText: "ACCOUNT", optionButtonText: "Sign Out", model: model, playerViewModel: playerViewModel, showUserProfile: $showUserProfile, userProfile: $userProfile)
                             .padding(.top, 50)
+                        
                         Spacer()
                     }
                 }
@@ -57,11 +67,12 @@ struct UserProfileButton: View {
     let optionButtonText: String
     @Binding var showUserProfile: Bool
     @Binding var userProfile: UserProfile
+    @Binding var showUserLibrary: Bool
     var body: some View {
         VStack(alignment: .leading){
             Text(optionText)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .padding(.horizontal, 25)
             Button(action: {
                 APICaller.shared.getCurrentUserProfile{ [self] result in
@@ -80,12 +91,23 @@ struct UserProfileButton: View {
                 }
             }, label: {
                 Text(optionButtonText)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color("BackgroundDefaultColor"))
                     .font(.body)
                     .fontWeight(.bold)
                     .padding()
                     .frame(width:UIScreen.main.bounds.width, alignment: .leading )
-                    .background(Color.secondary)
+                    .background(Color("TextColor"))
+            })
+            Button(action: {
+                showUserLibrary = true
+            }, label: {
+                Text("User Library")
+                    .foregroundColor(Color("BackgroundDefaultColor"))
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .padding()
+                    .frame(width:UIScreen.main.bounds.width, alignment: .leading )
+                    .background(Color("TextColor"))
             })
         }
         
@@ -103,7 +125,7 @@ struct SignOutButton: View {
         VStack(alignment: .leading){
             Text(optionText)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .padding(.horizontal, 25)
             Button(action: {
                 showAlert.toggle()
@@ -111,12 +133,12 @@ struct SignOutButton: View {
                 playerViewModel.showPlayer = false
             }, label: {
                 Text(optionButtonText)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color("BackgroundDefaultColor"))
                     .font(.body)
                     .fontWeight(.bold)
                     .padding()
                     .frame(width:UIScreen.main.bounds.width, alignment: .leading )
-                    .background(Color.secondary)
+                    .background(Color("TextColor"))
             })
                 .alert(isPresented: $showAlert){
                     Alert(

@@ -15,7 +15,7 @@ struct FeaturedPlaylistCollectionView: View {
         VStack(alignment: .leading) {
             Text("Featured Playlists")
                 .font(.title)
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .bold()
                 .padding(.horizontal, 20)
             ScrollView(.horizontal){
@@ -68,7 +68,7 @@ struct PlaylistView: View {
             
             Text(featuredPlaylist.name)
                 .font(.body)
-                .foregroundColor(.white)
+                .foregroundColor(Color("TextColor"))
                 .multilineTextAlignment(.center)
             Text(featuredPlaylist.creatorName)
                 .foregroundColor(.gray)
