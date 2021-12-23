@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		01BA75CC6813A700A3D58C62 /* Pods_ActivitiesSound.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 430E07959E4852AA43FAC71B /* Pods_ActivitiesSound.framework */; };
 		3D035F572774B30600F77BA0 /* SelectPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F562774B30600F77BA0 /* SelectPlaylist.swift */; };
-		3D035F5C2774D30900F77BA0 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F592774D30900F77BA0 /* APICaller.swift */; };
-		3D035F5D2774D30900F77BA0 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F5A2774D30900F77BA0 /* HapticsManager.swift */; };
-		3D035F5E2774D30900F77BA0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F5B2774D30900F77BA0 /* AuthManager.swift */; };
+		3D035F632774D43C00F77BA0 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F602774D43C00F77BA0 /* APICaller.swift */; };
+		3D035F642774D43C00F77BA0 /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F612774D43C00F77BA0 /* HapticsManager.swift */; };
+		3D035F652774D43C00F77BA0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D035F622774D43C00F77BA0 /* AuthManager.swift */; };
 		3D06716E270A1B1600016CC9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D06716D270A1B1600016CC9 /* Helper.swift */; };
 		3D170A9C273FC44100B69374 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D170A9B273FC44100B69374 /* UserProfileView.swift */; };
 		3D3CAC45274953F000EB7A8A /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CAC44274953F000EB7A8A /* PlayerViewModel.swift */; };
@@ -91,9 +91,9 @@
 
 /* Begin PBXFileReference section */
 		3D035F562774B30600F77BA0 /* SelectPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlaylist.swift; sourceTree = "<group>"; };
-		3D035F592774D30900F77BA0 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
-		3D035F5A2774D30900F77BA0 /* HapticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		3D035F5B2774D30900F77BA0 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		3D035F602774D43C00F77BA0 /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		3D035F612774D43C00F77BA0 /* HapticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		3D035F622774D43C00F77BA0 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3D06716D270A1B1600016CC9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3D170A9B273FC44100B69374 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		3D3CAC44274953F000EB7A8A /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
@@ -197,12 +197,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3D035F582774D30900F77BA0 /* Managers */ = {
+		3D035F5F2774D43C00F77BA0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				3D035F592774D30900F77BA0 /* APICaller.swift */,
-				3D035F5A2774D30900F77BA0 /* HapticsManager.swift */,
-				3D035F5B2774D30900F77BA0 /* AuthManager.swift */,
+				3D035F602774D43C00F77BA0 /* APICaller.swift */,
+				3D035F612774D43C00F77BA0 /* HapticsManager.swift */,
+				3D035F622774D43C00F77BA0 /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -210,7 +210,6 @@
 		3D472EC02706F01E00B8D583 = {
 			isa = PBXGroup;
 			children = (
-				3D035F582774D30900F77BA0 /* Managers */,
 				3D751E25273EEB3D006F515A /* Podfile */,
 				3D472ECB2706F01E00B8D583 /* ActivitiesSound */,
 				3D472EDD2706F02000B8D583 /* ActivitiesSoundTests */,
@@ -234,6 +233,7 @@
 		3D472ECB2706F01E00B8D583 /* ActivitiesSound */ = {
 			isa = PBXGroup;
 			children = (
+				3D035F5F2774D43C00F77BA0 /* Managers */,
 				3DD2E31A27639BAE003279D9 /* Extensions.swift */,
 				3D89E189273EF96300D4EF06 /* ViewModels */,
 				3D89E186273EF94D00D4EF06 /* Presenter */,
@@ -544,6 +544,7 @@
 				3D89E197273EF96300D4EF06 /* SearchResultSubTitleTableViewCellViewModel.swift in Sources */,
 				3D89E177273EF93E00D4EF06 /* PlaylistDetailsResponse.swift in Sources */,
 				3D89E193273EF96300D4EF06 /* FeaturedPlaylistCellViewModel.swift in Sources */,
+				3D035F632774D43C00F77BA0 /* APICaller.swift in Sources */,
 				3D89E192273EF96300D4EF06 /* CategoryCollectionViewCellViewModel.swift in Sources */,
 				3D89E17E273EF93E00D4EF06 /* LibraryPlaylistsPesponse.swift in Sources */,
 				3D89E188273EF94D00D4EF06 /* PlaybackPresenter.swift in Sources */,
@@ -565,6 +566,7 @@
 				3D89E182273EF93E00D4EF06 /* AlbumDetailResponse.swift in Sources */,
 				3D89E183273EF93E00D4EF06 /* AuthResponse.swift in Sources */,
 				3D89E185273EF93E00D4EF06 /* LibraryAlbumsResponse.swift in Sources */,
+				3D035F642774D43C00F77BA0 /* HapticsManager.swift in Sources */,
 				3D472ECD2706F01E00B8D583 /* ActivitiesSoundApp.swift in Sources */,
 				3D89E178273EF93E00D4EF06 /* AllCategoriesResponse.swift in Sources */,
 				3DA6D8772746AA32009CE4EF /* FeaturedPlaylistCollectionView.swift in Sources */,
@@ -586,6 +588,7 @@
 				3D3D96B2275290D000E6D2A8 /* ActivityMusicRecommendResult.swift in Sources */,
 				3D472F062707039900B8D583 /* CustomCircleView.swift in Sources */,
 				3D035F572774B30600F77BA0 /* SelectPlaylist.swift in Sources */,
+				3D035F652774D43C00F77BA0 /* AuthManager.swift in Sources */,
 				3D751E2A273EF139006F515A /* LoginWebView.swift in Sources */,
 				3D89E1A2273FAEBD00D4EF06 /* LoginViewModel.swift in Sources */,
 				3DCF1FF4275287490008292A /* DropBox.swift in Sources */,
@@ -605,10 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D035F5D2774D30900F77BA0 /* HapticsManager.swift in Sources */,
-				3D035F5E2774D30900F77BA0 /* AuthManager.swift in Sources */,
 				3D472EEA2706F02000B8D583 /* ActivitiesSoundUITests.swift in Sources */,
-				3D035F5C2774D30900F77BA0 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
