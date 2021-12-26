@@ -39,14 +39,14 @@ struct UserLibrary: View {
                         isPlaylistSelected = true
                     }){
                         Text("Playlists")
-                            .foregroundColor(isPlaylistSelected ? Color.blue : Color("BackgroundDeaultColor"))
+                            .foregroundColor(isPlaylistSelected ? Color.blue : Color("TextColor"))
                             .font(.system(size: 18.0))
                     }
                     Button(action:{
                         isPlaylistSelected = false
                     }){
                         Text("Albums")
-                            .foregroundColor(isPlaylistSelected ? Color("BackgroundDeaultColor"): Color.blue )
+                            .foregroundColor(isPlaylistSelected ? Color("TextColor"): Color.blue )
                             .font(.system(size: 18.0))
                     }
                 }
