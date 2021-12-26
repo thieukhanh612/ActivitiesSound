@@ -91,6 +91,8 @@ struct SearchView: View {
             })
             .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
+        .navigationTitle("")
     }
 }
 extension View {

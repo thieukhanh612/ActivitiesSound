@@ -144,7 +144,7 @@ struct SignOutButton: View {
                     Alert(
                         title:Text("Sign out"),
                         message: Text("Do you want to sign out?"),
-                        primaryButton: .cancel(Text("Cancle"), action: {
+                        primaryButton: .cancel(Text("Cancel"), action: {
                             showAlert = false
                             
                         }),

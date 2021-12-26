@@ -28,7 +28,7 @@ struct TabBar: View {
                         }
                     }
                     .tag(1)
-                    .navigationTitle("Home")
+                    .navigationBarTitleDisplayMode(.inline)
                     .transition(.slide)
                 SearchView(playerViewModel: playerViewModel)
                     .tabItem{
@@ -38,7 +38,7 @@ struct TabBar: View {
                         }
                     }
                     .tag(2)
-                    .navigationTitle("Search")
+                    .navigationBarTitleDisplayMode(.inline)
                     .transition(.slide)
                 SettingViews(model: model, playerViewModel: playerViewModel)
                     .tabItem {
@@ -48,17 +48,23 @@ struct TabBar: View {
                         }
                     }
                     .tag(3)
+                    .navigationBarTitleDisplayMode(.inline)
                     .transition(.slide)
             })
+                .navigationBarHidden(true)
                 .accentColor(Color(red: 72/255, green: 112/255, blue: 255/255))
                 .onAppear(){
                     UITabBar.appearance().barTintColor = UIColor.init(named: "BackgroundDefaultColor")
                     
                 }
+                .animation(.default)
             if playerViewModel.showPlayer{
-                    PlayerView(expand: $expand, playerViewModel: playerViewModel)
+                PlayerView(expand: $expand, playerViewModel: playerViewModel)
             }
         }
+
+           .navigationBarHidden(true)
+
     }
     
 }

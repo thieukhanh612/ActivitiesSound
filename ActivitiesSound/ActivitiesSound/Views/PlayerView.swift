@@ -141,7 +141,6 @@ struct PlayerView: View {
                 HStack{
                     Button(action: {
                         PlaybackPresenter.shared.didTapBackwards()
-                        PlaybackPresenter.shared.playerQueue?.pause()
                         playerViewModel.currentTrack = PlaybackPresenter.shared.currentTrack
                     }, label: {
                         Image(systemName: "backward.fill")
@@ -155,7 +154,6 @@ struct PlayerView: View {
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
                             
-                            PlaybackPresenter.shared.playerQueue?.play()
                             isPlaying = true
                         }, label: {
                             Image(systemName: "play.fill")
@@ -168,7 +166,7 @@ struct PlayerView: View {
                     else{
                         Button(action: {
                             PlaybackPresenter.shared.didTapPlayPause()
-                            PlaybackPresenter.shared.playerQueue?.pause()
+
                             isPlaying = false
                         }, label: {
                             Image(systemName: "stop.fill")

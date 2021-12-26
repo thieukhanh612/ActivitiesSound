@@ -134,7 +134,7 @@ struct AlbumDetailView: View {
             Alert(
                 title:Text("Save album?"),
                 message: Text("Do you want to save this album to your library?"),
-                primaryButton: .cancel(Text("Cancle"), action: {
+                primaryButton: .cancel(Text("Cancel"), action: {
                     showAlert = false
                     
                 }),

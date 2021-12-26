@@ -92,16 +92,17 @@ struct DiscoverView: View {
                     }
                 }
             }
+            .navigationBarHidden(true)
             .ignoresSafeArea()
             .onAppear(perform: {
                 if !isFetched{
                 fetchData()
                 }
             })
-            .navigationBarHidden(true)
         }
-        .navigationBarTitle("Browse")
+        .navigationTitle("")
         .navigationBarHidden(true)
+        
         
         
     }

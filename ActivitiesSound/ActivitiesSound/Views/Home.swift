@@ -17,13 +17,18 @@ struct Home: View{
                 .ignoresSafeArea()
             if model.isloggedIn{
                 
-                TabBar(model: model, playerViewModel: playerViewModel)
+                if showTabBar{
+                    TabBar(model: model, playerViewModel: playerViewModel)
+                } else{
+                    ChooseActivityView(showTabbar: $showTabBar, playerViewModel: playerViewModel, model: model)
+                }
             }
             else{
                 LaunchScreenView(showTabBar: $showTabBar, model: model)
                 
             }
         }
+        .animation(.default)
         .onAppear{
             if model.isloggedIn{
                 AuthManager.shared.refreshIfNeeded(completion: nil)

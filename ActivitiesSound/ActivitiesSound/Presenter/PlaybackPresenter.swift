@@ -41,6 +41,7 @@ final class PlaybackPresenter{
     
     func startPlayback(
         track: AudioTrack) {
+            playerQueue?.removeAllItems()
             player?.replaceCurrentItem(with: nil)
             guard let url = URL(string: track.preview_url ?? "") else { return }
             player = AVPlayer(url: url)
@@ -53,6 +54,7 @@ final class PlaybackPresenter{
     
     func startsPlayback(
         tracks: [AudioTrack]) {
+            player?.replaceCurrentItem(with: nil)
             self.index = 0
             playerQueue?.removeAllItems()
             self.tracks = tracks
@@ -80,7 +82,8 @@ extension PlaybackPresenter: PlayerViewControllerDelegate {
             if player.timeControlStatus == .playing {
                 player.pause()
             } else if player.timeControlStatus == .paused { player.play() }
-        } else if  let player = playerQueue {
+        }
+        if  let player = playerQueue {
             if player.timeControlStatus == .playing {
                 player.pause()
             } else if player.timeControlStatus == .paused {
@@ -93,37 +96,45 @@ extension PlaybackPresenter: PlayerViewControllerDelegate {
     func didTapForward() {
         if tracks.isEmpty {
             //not playlist or album
-            player?.pause()
-            player?.play()
-        } else if index >= tracks.count - 1{
-        }else if let player = playerQueue {
-            player.advanceToNextItem()
-         
+            playerQueue?.pause()
+            playerQueue?.removeAllItems()
+        } else if index == tracks.count - 1{
+            
+        }
+        else if let player = playerQueue {
             index += 1
+            while tracks[index].preview_url == nil {
+                index += 1
+            }
+            player.advanceToNextItem()
+            print(index)
         }
     }
     
     func didTapBackwards() {
         if tracks.isEmpty {
             //not playlist or album
-            player?.pause()
-            player?.play()
-        } else if index - 1 < 0 {
+            playerQueue?.pause()
+            playerQueue?.removeAllItems()
+            
+        } else if index == 0 {
 //            playerQueue?.pause()
 //            playerQueue?.removeAllItems()
 //            playerQueue = AVQueuePlayer(items: [firstItem])
 //            playerQueue?.play()
 //            playerQueue?.volume = 0.5
-            index = 0
         }else {
             index -= 1
-            let previous = AVPlayerItem.init(url: URL(string: tracks[index].preview_url ?? "")!)
+            print(index)
+            while tracks[index].preview_url == nil {
+                index -= 1
+            }
+            let previous = AVPlayerItem.init(url: URL(string:tracks[index].preview_url ?? "")!)
             let current = playerQueue?.currentItem
             playerQueue?.insert(previous , after: playerQueue?.currentItem)
             playerQueue?.advanceToNextItem()
             playerQueue?.insert(current ?? AVPlayerItem.init(url: URL(string: "")!), after: playerQueue?.currentItem)
             playerQueue?.play()
-            playerQueue?.volume = 0.5
         }
     }
     

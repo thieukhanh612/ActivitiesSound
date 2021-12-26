@@ -66,7 +66,7 @@ struct SelectPlaylist: View {
             Alert(
                 title:Text("Add to playlist"),
                 message: Text("Do you want to add this \(track.name) to \(playlistSelected.name) ? "),
-                primaryButton: .cancel(Text("Cancle"), action: {
+                primaryButton: .cancel(Text("Cancel"), action: {
                     showAlert = false
                     
                 }),
