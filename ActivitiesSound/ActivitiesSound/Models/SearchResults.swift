@@ -2,7 +2,7 @@
 //  SearchResults.swift
 //  Spotify
 //
-//  Created by Дмитрий Старков on 02.05.2021.
+//  Created by  on 02.05.2021.
 //
 
 import Foundation

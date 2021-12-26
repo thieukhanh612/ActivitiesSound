@@ -2,7 +2,7 @@
 //  LibraryAlbumsResponse.swift
 //  Spotify
 //
-//  Created by Дмитрий Старков on 28.05.2021.
+//  Created by  on 28.05.2021.
 //
 
 import Foundation

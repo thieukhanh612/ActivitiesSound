@@ -2,7 +2,7 @@
 //  AlbumDetailResponse.swift
 //  Spotify
 //
-//  Created by Дмитрий Старков on 22.04.2021.
+//  Created by  on 22.12.2021.
 //
 
 import Foundation

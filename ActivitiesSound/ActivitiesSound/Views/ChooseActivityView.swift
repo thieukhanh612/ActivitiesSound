@@ -89,7 +89,7 @@ struct ChooseActivityView: View {
                                     .padding()
                             }
                             .background(Color("TextColor"))
-                            .border(LinearGradient(colors: [Color.init(red: 0, green: 56, blue: 245),Color.init(red: 159, green: 3, blue: 255)], startPoint: .leading, endPoint: .trailing), width: 1)
+                            .border(LinearGradient(colors: [Color.init(red: 0, green: 56/255, blue: 245/255),Color.init(red: 159/255, green: 3/255, blue: 255/255)], startPoint: .topLeading, endPoint: .bottomTrailing), width: 1)
                             .shadow(radius: 5)
                         }
                         Spacer()

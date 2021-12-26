@@ -2,7 +2,7 @@
 //  AlbumCollectionViewCellModel.swift
 //  Spotify
 //
-//  Created by Дмитрий Старков on 28.04.2021.
+//  Created by  on 28.12.2021.
 //
 
 import Foundation

@@ -107,11 +107,6 @@ extension View {
             }
         }
 }
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView(playerViewModel: PlayerViewModel())
-    }
-}
 struct CategoryView: View{
     let colors: [Color] = [
         .green,
@@ -239,52 +234,58 @@ struct SectionView: View{
             ForEach( 0 ..< result.count, id: \.self){ value in
                 switch result[value]{
                 case .track(model: let track):
-                    Button(action: {
-                        PlaybackPresenter.shared.playerQueue?.pause()
-                        PlaybackPresenter.shared.startPlayback(track: track)
-                        playerViewModel.currentTrack = track
-                        if playerViewModel.currentTrack?.preview_url != nil{
-                            playerViewModel.showPlayer = true
-                        }
-                    }) {
-                        HStack{
-                            if #available(iOS 15.0, *) {
-                                AsyncImage(url: URL(string: track.album?.images.first?.url ?? "")){ image in
-                                    image.resizable()
-                                } placeholder: {
+                    HStack {
+                        Button(action: {
+                            PlaybackPresenter.shared.playerQueue?.pause()
+                            PlaybackPresenter.shared.startPlayback(track: track)
+                            playerViewModel.currentTrack = track
+                            if playerViewModel.currentTrack?.preview_url != nil{
+                                playerViewModel.showPlayer = true
+                            }
+                        }) {
+                            HStack{
+                                if #available(iOS 15.0, *) {
+                                    AsyncImage(url: URL(string: track.album?.images.first?.url ?? "")){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        
+                                        Image(systemName: "personal")
+                                        
+                                    }
+                                    .frame(width: 50 , height: 50)
                                     
-                                    Image(systemName: "personal")
-                                    
+                                } else {
+                                    // Fallback on earlier versions
                                 }
-                                .frame(width: 50 , height: 50)
-                                
-                            } else {
-                                // Fallback on earlier versions
-                            }
-                            VStack(alignment: .leading){
-                                Text(track.name)
-                                    .foregroundColor(Color("TextColor"))
-                                    .font(.footnote)
-                                    .padding(.top, 10)
+                                VStack(alignment: .leading){
+                                    Text(track.name)
+                                        .foregroundColor(Color("TextColor"))
+                                        .font(.footnote)
+                                        .padding(.top, 10)
+                                    Spacer()
+                                    Text(track.artists.first?.name ?? "")
+                                        .font(.footnote)
+                                        .foregroundColor(Color("SubTextColor"))
+                                        .padding(.bottom, 10)
+                                }
                                 Spacer()
-                                Text(track.artists.first?.name ?? "")
-                                    .font(.footnote)
-                                    .foregroundColor(Color("SubTextColor"))
-                                    .padding(.bottom, 10)
                             }
-                            Spacer()
-                            Image(systemName:"chevron.compact.right")
-                                .resizable()
-                                .frame(width: 10, height: 10)
-                                .foregroundColor(.gray)
-                                .padding()
-                        }
-                        .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.gray, lineWidth: 2)
-                            )
-                        
+                            
                     }
+                        NavigationLink(destination:{
+                            SelectPlaylist(track: track)
+                        }){
+                            Image(systemName: "plus")
+                                .frame(width: 30,height: 30)
+                                .foregroundColor(Color("TextColor"))
+                                .padding(.trailing, 10)
+                        }
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.gray, lineWidth: 2)
+                            .border(LinearGradient(colors: [Color.init(red: 0, green: 56/255, blue: 245/255),Color.init(red: 159/255, green: 3/255, blue: 255/255)], startPoint: .topLeading, endPoint: .bottomTrailing), width: 1)
+                    )
                     
                 case .playlist(model: let playlist):
                     NavigationLink(destination: PlaylistDetailView(playlist: playlist, playerViewModel:playerViewModel)) {
@@ -323,6 +324,8 @@ struct SectionView: View{
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.gray, lineWidth: 2)
+                                    .border(LinearGradient(colors: [Color.init(red: 0, green: 56/255, blue: 245/255),Color.init(red: 159/255, green: 3/255, blue: 255/255)], startPoint: .topLeading, endPoint: .bottomTrailing), width: 1)
+
                             )
                     }
                 case .album(model: let album):
@@ -346,6 +349,7 @@ struct SectionView: View{
                                     .foregroundColor(Color("TextColor"))
                                     .font(.footnote)
                                     .padding(.top, 10)
+                            
                                 Spacer()
                                 Text(album.artists.first?.name ?? "")
                                     .font(.footnote)
@@ -362,6 +366,8 @@ struct SectionView: View{
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.gray, lineWidth: 2)
+                                    .border(LinearGradient(colors: [Color.init(red: 0, green: 56/255, blue: 245/255),Color.init(red: 159/255, green: 3/255, blue: 255/255)], startPoint: .topLeading, endPoint: .bottomTrailing), width: 1)
+
                             )
                     }
 
@@ -401,6 +407,8 @@ struct SectionView: View{
                         .overlay(
                                 RoundedRectangle(cornerRadius: 5)
                                     .stroke(Color.gray, lineWidth: 2)
+                                    .border(LinearGradient(colors: [Color.init(red: 0, green: 56/255, blue: 245/255),Color.init(red: 159/255, green: 3/255, blue: 255/255)], startPoint: .topLeading, endPoint: .bottomTrailing), width: 1)
+
                             )
                     }
 

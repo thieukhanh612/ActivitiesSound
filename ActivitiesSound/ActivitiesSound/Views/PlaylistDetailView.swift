@@ -36,7 +36,7 @@ struct PlaylistDetailView: View {
                     }
                     VStack(alignment: .leading) {
                         Text(playlist.name)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("TextColor"))
                             .font(.title)
                             .padding(.horizontal, 10)
                         Text(playlist.description)
